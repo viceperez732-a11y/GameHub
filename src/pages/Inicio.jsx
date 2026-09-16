@@ -3,7 +3,7 @@ import GameCard from "../components/GameCard";
 import { games } from "../data/games";
 
 export default function Inicio() {
-  const featured = games.slice(0, 4);
+  const featured = games.slice(0, 9);
 
   return (
     <main className="cyber-grid">
@@ -60,21 +60,7 @@ export default function Inicio() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 pb-20 pt-8 sm:px-6">
-        <div className="grid gap-4 md:grid-cols-3">
-          {[
-            ["⚡", "Renta sencilla", "Elige un juego y simula tu renta mensual desde la interfaz."],
-            ["🎮", "Gran catálogo", "Explora títulos por género, precio y popularidad."],
-            ["📱", "Diseño responsive", "Disfruta Game Hub desde computadora, tablet o celular."]
-          ].map(([icon, title, text]) => (
-            <div key={title} className="rounded-2xl border border-purple-500/20 bg-slate-900/60 p-6">
-              <span className="text-3xl">{icon}</span>
-              <h3 className="mt-4 font-bold">{title}</h3>
-              <p className="mt-2 text-sm leading-6 text-slate-400">{text}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      
     </main>
   );
 }
