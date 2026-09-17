@@ -5,6 +5,7 @@ import Inicio from "./pages/Inicio";
 import Registro from "./pages/Registro";
 import Catalogo from "./pages/Catalogo";
 import MiPerfil from "./pages/MiPerfil";
+import IniciarSesion from "./pages/IniciarSesion";
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
           <Route path="/registro" element={<Registro />} />
           <Route path="/catalogo" element={<Catalogo />} />
           <Route path="/perfil" element={<MiPerfil />} />
+          <Route path="/iniciar-sesion" element={<IniciarSesion />} />
         </Routes>
         <Footer />
       </div>
