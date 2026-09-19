@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import games from "../data/games.json";
+import games from "../data/gamesData.json";
 
 const gameDetails = {
   1: {
