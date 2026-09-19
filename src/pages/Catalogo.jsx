@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import GameCard from "../components/GameCard";
 import GameModal from "../components/GameModal";
-import { games } from "../data/games";
+import games from "../data/games.json";
 
 export default function Catalogo() {
   const [search, setSearch] = useState("");

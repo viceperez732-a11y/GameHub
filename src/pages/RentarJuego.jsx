@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { games } from "../data/games";
+import games from "../data/games.json";
 
 const rentalDurations = [
   { months: 1, label: "1 mes", discount: 0 },

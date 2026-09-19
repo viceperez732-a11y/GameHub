@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import GameCard from "../components/GameCard";
-import { games } from "../data/games";
+import games from "../data/games.json";
 
 export default function Inicio() {
   const featured = games.slice(0, 9);
