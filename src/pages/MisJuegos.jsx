@@ -1,92 +1,121 @@
-import React, { useState } from 'react';
-import juegosIniciales from '../data/misJuegosData.json';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import PackageCollage from "../components/PackageCollage";
+import paquetes from "../data/gamesData.json";
+
+// 👉 AQUÍ ELIGES QUÉ PAQUETES SALEN EN "MIS JUEGOS" (ids de gamesData.json):
+//    1 = Paquete Mundo Abierto
+//    2 = Paquete RPG Legendario
+//    3 = Paquete Casual & Deportes
+// Ejemplos:  [1]  → un paquete   |   [1, 2]  → dos paquetes   |   [1, 2, 3]  → todos
+const MIS_PAQUETES_IDS = [1, 2];
 
 export default function MisJuegos() {
-  const [juegos] = useState(juegosIniciales);
-  const [busqueda, setBusqueda] = useState('');
-  const [filtroEstado, setFiltroEstado] = useState('Todos');
+  const navigate = useNavigate();
+  const [search, setSearch] = useState("");
 
-  // Filtrado dinámico en tiempo real según búsqueda y estado
-  const juegosFiltrados = juegos.filter((juego) => {
-    const coincideTitulo = juego.titulo.toLowerCase().includes(busqueda.toLowerCase());
-    const coincideEstado = filtroEstado === 'Todos' || juego.estado === filtroEstado;
-    return coincideTitulo && coincideEstado;
+  // Los mismos paquetes del Catálogo, pero solo los que están en MIS_PAQUETES_IDS
+  const misPaquetes = paquetes.filter((paquete) => MIS_PAQUETES_IDS.includes(paquete.id));
+
+  // Búsqueda por nombre del paquete o por un juego incluido (igual que en el Catálogo)
+  const paquetesFiltrados = misPaquetes.filter((paquete) => {
+    const term = search.toLowerCase();
+    return (
+      paquete.title.toLowerCase().includes(term) ||
+      paquete.juegos?.some((juego) => juego.titulo.toLowerCase().includes(term))
+    );
   });
 
   return (
-    <div className="min-h-screen bg-slate-900 text-slate-100 p-6 flex flex-col items-center">
-      <div className="w-full max-w-5xl">
-        <h1 className="text-3xl font-bold mb-2 text-indigo-400">Mis Juegos</h1>
-        <p className="text-slate-400 mb-6">Gestiona y explora tu biblioteca personal de videojuegos.</p>
-
-        {/* Barra de Filtros e Interacción */}
-        <div className="flex flex-col sm:flex-row gap-4 mb-8 bg-slate-800 p-4 rounded-xl border border-slate-700">
-          <input
-            type="text"
-            placeholder="Buscar por título..."
-            value={busqueda}
-            onChange={(e) => setBusqueda(e.target.value)}
-            className="flex-1 bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-indigo-500 outline-none"
-          />
-
-          <select
-            value={filtroEstado}
-            onChange={(e) => setFiltroEstado(e.target.value)}
-            className="bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-indigo-500 outline-none cursor-pointer"
-          >
-            <option value="Todos">Todos los estados</option>
-            <option value="Jugando">Jugando</option>
-            <option value="Completado">Completado</option>
-            <option value="Pendiente">Pendiente</option>
-          </select>
+    <main className="cyber-grid min-h-screen">
+      <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6">
+        <div className="mb-8">
+          <p className="text-xs font-bold uppercase tracking-[.25em] text-fuchsia-400">Tu biblioteca</p>
+          <h1 className="mt-2 text-4xl font-black sm:text-5xl">Mis juegos</h1>
+          <p className="mt-3 text-slate-400">Los paquetes que tienes y los juegos que incluye cada uno.</p>
         </div>
 
-        {/* Cuadrícula de Juegos */}
-        {juegosFiltrados.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {juegosFiltrados.map((juego) => (
-              <div
-                key={juego.id}
-                className="bg-slate-800 rounded-xl overflow-hidden border border-slate-700 hover:border-indigo-500 transition-all shadow-lg flex flex-col"
+        <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <div className="relative flex-1">
+            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500">🔍</span>
+            <input
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Buscar paquete o juego incluido..."
+              className="w-full rounded-xl border border-purple-500/25 bg-slate-950/75 py-3 pl-11 pr-4 text-white outline-none placeholder:text-slate-600 focus:border-fuchsia-400/60"
+            />
+          </div>
+          <span className="text-sm text-slate-500">
+            {misPaquetes.length} {misPaquetes.length === 1 ? "paquete" : "paquetes"}
+          </span>
+        </div>
+
+        {paquetesFiltrados.length > 0 ? (
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
+            {paquetesFiltrados.map((paquete) => (
+              <article
+                key={paquete.id}
+                className="group overflow-hidden rounded-2xl border border-purple-500/25 bg-slate-900/80 neon-border transition duration-300 hover:-translate-y-1 hover:border-fuchsia-400/60"
               >
-                <img
-                  src={juego.imagen}
-                  alt={juego.titulo}
-                  className="w-full h-40 object-cover"
-                />
-                <div className="p-5 flex-1 flex flex-col justify-between">
+                {/* Collage con las imágenes de los juegos del paquete (igual que el Catálogo) */}
+                <div className="relative aspect-[4/5] overflow-hidden">
+                  <PackageCollage
+                    juegos={paquete.juegos}
+                    fallbackImage={paquete.image}
+                    alt={paquete.title}
+                    className="transition duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent" />
+                  <span className="absolute bottom-3 left-3 rounded-full border border-fuchsia-400/30 bg-fuchsia-500/15 px-3 py-1 text-xs font-semibold text-fuchsia-200">
+                    {paquete.genre}
+                  </span>
+                </div>
+
+                <div className="space-y-3 p-4">
                   <div>
-                    <div className="flex justify-between items-start mb-2">
-                      <h3 className="text-xl font-semibold text-white">{juego.titulo}</h3>
-                      <span
-                        className={`text-xs px-2.5 py-1 rounded-full font-medium ${
-                          juego.estado === 'Jugando'
-                            ? 'bg-green-500/20 text-green-400 border border-green-500/30'
-                            : juego.estado === 'Completado'
-                            ? 'bg-indigo-500/20 text-indigo-400 border border-indigo-500/30'
-                            : 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30'
-                        }`}
-                      >
-                        {juego.estado}
-                      </span>
-                    </div>
-                    <p className="text-sm text-indigo-400 mb-1">{juego.genero}</p>
-                    <p className="text-xs text-slate-400">Plataforma: {juego.plataforma}</p>
+                    <h3 className="font-bold text-white">{paquete.title}</h3>
+                    <p className="mt-1 text-xs text-slate-400">
+                      {paquete.category} • ⭐ {paquete.rating}
+                    </p>
                   </div>
 
-                  <div className="mt-4 pt-3 border-t border-slate-700/60 flex justify-between items-center text-xs text-slate-300">
-                    <span>⏱️ {juego.horasJugadas} hrs jugadas</span>
+                  {/* Lista de juegos incluidos */}
+                  <div className="rounded-xl border border-purple-500/20 bg-slate-950/60 p-3">
+                    <p className="text-[11px] font-bold uppercase tracking-[.2em] text-fuchsia-400">
+                      Juegos incluidos ({paquete.juegos.length})
+                    </p>
+                    <ul className="mt-2 space-y-2">
+                      {paquete.juegos.map((juego) => (
+                        <li key={juego.titulo} className="flex items-center gap-2 text-sm text-slate-300">
+                          <img
+                            src={juego.imagen}
+                            alt={juego.titulo}
+                            className="h-8 w-8 rounded-md object-cover"
+                          />
+                          {juego.titulo}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
+
+                  <button
+                    onClick={() => navigate("/rentar", { state: { gameId: paquete.id } })}
+                    className="neon-button w-full rounded-xl bg-gradient-to-r from-purple-600 to-fuchsia-500 px-3 py-2 text-xs font-bold text-white transition hover:from-purple-500 hover:to-pink-500"
+                  >
+                    Rentar de nuevo
+                  </button>
                 </div>
-              </div>
+              </article>
             ))}
           </div>
         ) : (
-          <div className="text-center py-12 bg-slate-800/50 rounded-xl border border-slate-700/50 text-slate-400">
-            No se encontraron juegos que coincidan con la búsqueda.
+          <div className="rounded-2xl border border-purple-500/20 bg-slate-950/70 p-12 text-center">
+            <div className="text-5xl">🔎</div>
+            <h2 className="mt-4 text-xl font-bold">No encontramos paquetes</h2>
+            <p className="mt-2 text-sm text-slate-500">Prueba con otra búsqueda.</p>
           </div>
         )}
-      </div>
-    </div>
+      </section>
+    </main>
   );
 }
