@@ -3,11 +3,6 @@ import { useNavigate } from "react-router-dom";
 import PackageCollage from "../components/PackageCollage";
 import paquetes from "../data/gamesData.json";
 
-// 👉 AQUÍ ELIGES QUÉ PAQUETES SALEN EN "MIS JUEGOS" (ids de gamesData.json):
-//    1 = Paquete Mundo Abierto
-//    2 = Paquete RPG Legendario
-//    3 = Paquete Casual & Deportes
-// Ejemplos:  [1]  → un paquete   |   [1, 2]  → dos paquetes   |   [1, 2, 3]  → todos
 const MIS_PAQUETES_IDS = [1, 2];
 
 export default function MisJuegos() {

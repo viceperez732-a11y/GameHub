@@ -3,3 +3,7 @@ venv/
 dist/
 backend/venv/
 backend/.env
+dist/
+backend/venv/
+backend/.env
+venv/
