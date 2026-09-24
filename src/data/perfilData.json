@@ -1,0 +1,11 @@
+{
+  "nombre": "Vicio300",
+  "username": "@Pedrita_sys",
+  "email": "Pedrita@ejemplo.com",
+  "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256",
+  "bio": "Apasionada de los videojuegos, Indie y de aventuras visuales 🚀",
+  "juegosFavoritos": [
+    { "id": 1, "titulo": "Sky: Children of the Light", "genero": "Aventura / Social" },
+    { "id": 2, "titulo": "Minecraft", "genero": "Sandbox / Survival" }
+  ]
+}

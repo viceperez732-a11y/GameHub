@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "titulo": "Sky: Children of the Light",
+    "genero": "Aventura / Social",
+    "plataforma": "PC / Mobile",
+    "horasJugadas": 120,
+    "estado": "Jugando",
+    "imagen": "https://cdn.cloudflare.steamstatic.com/steam/apps/2325290/header.jpg"
+  },
+  {
+    "id": 2,
+    "titulo": "Minecraft",
+    "genero": "Sandbox / Survival",
+    "plataforma": "PC",
+    "horasJugadas": 350,
+    "estado": "Completado",
+    "imagen": "https://www.minecraft.net/content/dam/minecraftnet/games/minecraft/key-art/Homepage_Discover-our-games_MC-Vanilla-KeyArt_864x864.jpg"
+  },
+  {
+    "id": 3,
+    "titulo": "Hollow Knight",
+    "genero": "Metroidvania",
+    "plataforma": "PC",
+    "horasJugadas": 45,
+    "estado": "Completado",
+    "imagen": "https://cdn.cloudflare.steamstatic.com/steam/apps/367520/header.jpg"
+  },
+  {
+    "id": 4,
+    "titulo": "Stardew Valley",
+    "genero": "Simulación",
+    "plataforma": "PC / Switch",
+    "horasJugadas": 80,
+    "estado": "Pendiente",
+    "imagen": "https://cdn.cloudflare.steamstatic.com/steam/apps/413150/header.jpg"
+  }
+]
