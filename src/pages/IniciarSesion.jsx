@@ -16,7 +16,7 @@ export default function IniciarSesion() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Validación sencilla de campos obligatorios
     if (!formData.email || !formData.password) {
@@ -24,10 +24,25 @@ export default function IniciarSesion() {
       return;
     }
 
-    // Simulación de inicio de sesión exitoso
-    setError('');
-    alert('¡Inicio de sesión exitoso!');
-    navigate('/perfil'); // Redirige a la vista de Mi Perfil
+    try {
+      const res = await fetch('http://localhost:5000/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include', // necesario para que la cookie de sesión se guarde
+        body: JSON.stringify({ email: formData.email, password: formData.password }),
+      });
+      const data = await res.json();
+
+      if (!res.ok || !data.ok) {
+        setError(data.error || 'Correo o contraseña incorrectos.');
+        return;
+      }
+
+      setError('');
+      navigate(data.redirect || '/perfil'); // Redirige a la vista de Mi Perfil
+    } catch (err) {
+      setError('No se pudo conectar con el servidor.');
+    }
   };
 
   return (

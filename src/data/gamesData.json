@@ -1,92 +1,83 @@
 [
   {
     "id": 1,
-    "title": "Cyberpunk 2077",
-    "genre": "RPG",
-    "category": "Acción",
-    "price": 109,
+    "title": "Paquete Mundo Abierto",
+    "genre": "Acción",
+    "category": "Steam Bundle",
+    "price": 199,
     "rating": 4.8,
     "image": "/publico/imagenes/Cyber.jpg",
-    "description": "Explora Night City en una aventura de mundo abierto llena de acción, decisiones y tecnología futurista."
+    "description": "Tres de los mundos abiertos más grandes de Steam en un solo paquete: Night City, Los Santos y el viejo oeste, todo por un precio.",
+    "juegos": [
+      {
+        "titulo": "Cyberpunk 2077",
+        "imagen": "/publico/imagenes/Cyber.jpg",
+        "descripcion": "Explora Night City en una aventura de mundo abierto llena de acción, decisiones y tecnología futurista."
+      },
+      {
+        "titulo": "Grand Theft Auto V",
+        "imagen": "/publico/imagenes/GTA.jpg",
+        "descripcion": "Recorre Los Santos y disfruta de una experiencia de mundo abierto llena de actividades."
+      },
+      {
+        "titulo": "Red Dead Redemption 2",
+        "imagen": "/publico/imagenes/RedDead.jpeg",
+        "descripcion": "Vive una historia épica del viejo oeste en un enorme mundo abierto."
+      }
+    ]
   },
   {
     "id": 2,
-    "title": "Red Dead Redemption 2",
-    "genre": "Aventura",
-    "category": "Acción",
-    "price": 89,
+    "title": "Paquete RPG Legendario",
+    "genre": "RPG",
+    "category": "Steam Bundle",
+    "price": 179,
     "rating": 4.9,
-    "image": "/publico/imagenes/RedDead.jpeg",
-    "description": "Vive una historia épica del viejo oeste en un enorme mundo abierto."
+    "image": "/publico/imagenes/Elden.avif",
+    "description": "Vive tres historias épicas de rol: combate en las Tierras Intermedias, acompaña a Geralt de Rivia y descubre la magia de Hogwarts.",
+    "juegos": [
+      {
+        "titulo": "Elden Ring",
+        "imagen": "/publico/imagenes/Elden.avif",
+        "descripcion": "Descubre un mundo fantástico, combate enemigos y construye tu propia aventura."
+      },
+      {
+        "titulo": "The Witcher 3",
+        "imagen": "/publico/imagenes/witcher.webp",
+        "descripcion": "Acompaña a Geralt en una aventura fantástica repleta de misiones y decisiones."
+      },
+      {
+        "titulo": "Hogwarts Legacy",
+        "imagen": "/publico/imagenes/Hogwarts.jpeg",
+        "descripcion": "Descubre el mundo mágico, aprende hechizos y vive tu propia historia."
+      }
+    ]
   },
   {
     "id": 3,
-    "title": "Elden Ring",
-    "genre": "RPG",
-    "category": "Acción",
-    "price": 99,
-    "rating": 4.9,
-    "image": "/publico/imagenes/Elden.avif",
-    "description": "Descubre un mundo fantástico, combate enemigos y construye tu propia aventura."
-  },
-  {
-    "id": 4,
-    "title": "Grand Theft Auto V",
-    "genre": "Mundo Abierto",
-    "category": "Acción",
-    "price": 99,
-    "rating": 4.7,
-    "image": "/publico/imagenes/GTA.jpg",
-    "description": "Recorre Los Santos y disfruta de una experiencia de mundo abierto llena de actividades."
-  },
-  {
-    "id": 5,
-    "title": "The Witcher 3",
-    "genre": "RPG",
-    "category": "Aventura",
-    "price": 89,
-    "rating": 4.8,
-    "image": "/publico/imagenes/witcher.webp",
-    "description": "Acompaña a Geralt en una aventura fantástica repleta de misiones y decisiones."
-  },
-  {
-    "id": 6,
-    "title": "Minecraft",
-    "genre": "Construcción",
-    "category": "Aventura",
-    "price": 69,
-    "rating": 4.7,
-    "image": "/publico/imagenes/minecraf.jpg",
-    "description": "Construye, explora y sobrevive en un mundo creado a tu manera."
-  },
-  {
-    "id": 7,
-    "title": "Hogwarts Legacy",
+    "title": "Paquete Casual & Deportes",
     "genre": "Aventura",
-    "category": "RPG",
-    "price": 89,
-    "rating": 4.6,
-    "image": "/publico/imagenes/Hogwarts.jpeg",
-    "description": "Descubre el mundo mágico, aprende hechizos y vive tu propia historia."
-  },
-  {
-    "id": 8,
-    "title": "FC 24",
-    "genre": "Deportes",
-    "category": "Deportes",
-    "price": 79,
+    "category": "Steam Bundle",
+    "price": 129,
     "rating": 4.5,
-    "image": "/publico/imagenes/fc.jpeg",
-    "description": "Disfruta partidos y competencias de fútbol con tus equipos favoritos."
-  },
-  {
-    "id": 9,
-    "title": "PUMPKIN PANIC",
-    "genre": "Suspenso",
-    "category": "Aventura",
-    "price": 0,
-    "rating": 4.0,
-    "image": "/publico/imagenes/pumpkin panic.jpg",
-    "description": "Tienes mucho trabajo por hacer. Siembra, riega y cosecha. Esta acogedora y tranquila granja, situada en el corazón del bosque, tiene mucho que ofrecer."
+    "image": "/publico/imagenes/minecraf.jpg",
+    "description": "Construye, relájate y disfruta del fútbol: un paquete variado para partidas casuales y en familia.",
+    "juegos": [
+      {
+        "titulo": "Minecraft",
+        "imagen": "/publico/imagenes/minecraf.jpg",
+        "descripcion": "Construye, explora y sobrevive en un mundo creado a tu manera."
+      },
+      {
+        "titulo": "Pumpkin Panic",
+        "imagen": "/publico/imagenes/pumpkin panic.jpg",
+        "descripcion": "Tienes mucho trabajo por hacer. Siembra, riega y cosecha en esta acogedora granja del bosque."
+      },
+      {
+        "titulo": "FC 24",
+        "imagen": "/publico/imagenes/fc.jpeg",
+        "descripcion": "Disfruta partidos y competencias de fútbol con tus equipos favoritos."
+      }
+    ]
   }
 ]

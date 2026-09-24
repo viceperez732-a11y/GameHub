@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import GameCard from "../components/GameCard";
-import games from "../data/gamesData.json";
+import PackageCollage from "../components/PackageCollage";
+import paquetes from "../data/gamesData.json";
 
 export default function Inicio() {
-  const featured = games.slice(0, 9);
+  const featured = paquetes.slice(0, 9);
 
   return (
     <main className="cyber-grid">
@@ -17,7 +18,7 @@ export default function Inicio() {
               JUEGA SIN <span className="neon-text bg-gradient-to-r from-purple-400 via-fuchsia-400 to-pink-400 bg-clip-text text-transparent">LÍMITES</span>
             </h1>
             <p className="mt-6 max-w-xl text-base leading-7 text-slate-300 sm:text-lg">
-              Descubre tus próximos juegos favoritos y réntalos por un mes. Todo tu catálogo gamer en un solo lugar.
+              Descubre paquetes con varios juegos de Steam y réntalos por un mes. Todo tu catálogo gamer en un solo lugar.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link to="/catalogo" className="neon-button rounded-xl bg-gradient-to-r from-purple-600 to-fuchsia-500 px-6 py-3 font-bold transition hover:scale-[1.02]">
@@ -32,15 +33,18 @@ export default function Inicio() {
           <div className="relative mx-auto w-full max-w-xl">
             <div className="absolute -inset-8 rounded-full bg-fuchsia-500/15 blur-3xl" />
             <div className="relative overflow-hidden rounded-[2rem] border border-purple-400/30 bg-slate-900 neon-border">
-              <img
-                src={games[0].image}
-                alt={games[0].title}
-                className="aspect-[4/3] w-full object-cover"
-              />
+              <div className="aspect-[4/3] w-full">
+                <PackageCollage
+                  juegos={paquetes[0].juegos}
+                  fallbackImage={paquetes[0].image}
+                  alt={paquetes[0].title}
+                />
+              </div>
               <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950 via-slate-950/75 to-transparent p-6 pt-20">
-                <p className="text-xs font-bold uppercase tracking-[.25em] text-fuchsia-400">Destacado</p>
-                <h2 className="mt-2 text-3xl font-black">{games[0].title}</h2>
-                <p className="mt-1 text-slate-300">${games[0].price} / mes</p>
+                <p className="text-xs font-bold uppercase tracking-[.25em] text-fuchsia-400">Paquete destacado</p>
+                <h2 className="mt-2 text-3xl font-black">{paquetes[0].title}</h2>
+                <p className="mt-1 text-slate-300">Incluye: {paquetes[0].juegos.map((j) => j.titulo).join(", ")}</p>
+                <p className="mt-1 font-bold text-fuchsia-300">${paquetes[0].price} / mes</p>
               </div>
             </div>
           </div>
@@ -51,12 +55,12 @@ export default function Inicio() {
         <div className="mb-6 flex items-end justify-between gap-4">
           <div>
             <p className="text-xs font-bold uppercase tracking-[.25em] text-fuchsia-400">Selección Game Hub</p>
-            <h2 className="mt-2 text-3xl font-black">🔥 Juegos destacados</h2>
+            <h2 className="mt-2 text-3xl font-black">🔥 Paquetes destacados</h2>
           </div>
           <Link to="/catalogo" className="text-sm font-semibold text-purple-300 hover:text-fuchsia-300">Ver todos →</Link>
         </div>
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {featured.map((game) => <GameCard key={game.id} game={game} />)}
+          {featured.map((paquete) => <GameCard key={paquete.id} game={paquete} />)}
         </div>
       </section>
 

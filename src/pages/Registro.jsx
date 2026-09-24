@@ -1,16 +1,18 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Registro() {
   const [form, setForm] = useState({ name: "", email: "", password: "", confirm: "" });
   const [showPassword, setShowPassword] = useState(false);
   const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
     setMessage("");
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!form.name || !form.email || !form.password || !form.confirm) {
@@ -28,8 +30,31 @@ export default function Registro() {
       return;
     }
 
-    setMessage("✅ Cuenta creada correctamente. ¡Bienvenido a Game Hub!");
-    setForm({ name: "", email: "", password: "", confirm: "" });
+    try {
+      const res = await fetch("http://localhost:5000/api/registro", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          password: form.password,
+          confirm: form.confirm,
+        }),
+      });
+      const data = await res.json();
+
+      if (!res.ok || !data.ok) {
+        setMessage(`⚠ ${data.error || "No se pudo crear la cuenta."}`);
+        return;
+      }
+
+      setMessage("✅ Cuenta creada correctamente. ¡Bienvenido a Game Hub!");
+      setForm({ name: "", email: "", password: "", confirm: "" });
+      setTimeout(() => navigate("/iniciar-sesion"), 1200);
+    } catch (err) {
+      setMessage("⚠ No se pudo conectar con el servidor.");
+    }
   };
 
   return (
