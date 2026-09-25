@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import games from "../data/gamesData.json";
 
 const gameDetails = {
@@ -69,7 +69,8 @@ const gameDetails = {
 };
 
 export default function DetallesJuego() {
-  const [selectedId, setSelectedId] = useState(games[0].id);
+  const location = useLocation();
+  const [selectedId, setSelectedId] = useState(location.state?.gameId ?? games[0].id);
   const [search, setSearch] = useState("");
   const selectedGame = games.find((game) => game.id === selectedId) ?? games[0];
   const details = gameDetails[selectedGame.id];
@@ -95,7 +96,7 @@ export default function DetallesJuego() {
             <p className="text-xs font-bold uppercase tracking-[.25em] text-fuchsia-400">
               Ventana de detalles
             </p>
-            <h1 className="mt-2 text-4xl font-black sm:text-5xl">Detalles del juego</h1>
+            <h1 className="mt-2 text-4xl font-black sm:text-5xl">Detalles del paquete</h1>
             <p className="mt-3 max-w-2xl text-slate-400">
               Consulta precio, descripcion, plataformas y requisitos antes de rentar.
             </p>
@@ -182,6 +183,21 @@ export default function DetallesJuego() {
               <p className="mt-6 max-w-3xl text-base leading-7 text-slate-300">
                 {selectedGame.description}
               </p>
+
+              <div className="mt-7">
+                <h3 className="font-bold text-white">Juegos incluidos</h3>
+                <div className="mt-4 grid gap-3 sm:grid-cols-3">
+                  {selectedGame.juegos.map((game) => (
+                    <div key={game.titulo} className="overflow-hidden rounded-xl border border-purple-500/20 bg-slate-900/70">
+                      <img src={game.imagen} alt={game.titulo} className="h-28 w-full object-cover" />
+                      <div className="p-3">
+                        <p className="text-sm font-bold">{game.titulo}</p>
+                        <p className="mt-1 text-xs leading-5 text-slate-400">{game.descripcion}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
 
               <div className="mt-7 grid gap-4 sm:grid-cols-3">
                 <div className="rounded-2xl border border-purple-500/20 bg-purple-500/5 p-4">
